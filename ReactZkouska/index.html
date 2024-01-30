@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React zkouška</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<style>
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+
+</style>
+
+<script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+<script type="text/jsx">
+    function Button() {
+        return <button>Button</button>
+    }
+
+    function Card() {
+        return (
+            <>
+                <img src="img.png" alt="cat" width="250px"/>
+                <h1>This is a header</h1>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa earum est explicabo iusto molestias mollitia necessitatibus nesciunt tempora tempore ut!</span>
+                <Button/>
+            </>
+        )
+    }
+
+    function CardList() {
+        return (<>
+
+            <section>
+            <Card/>
+            </section>
+
+            <section>
+                <Card/>
+            </section>
+
+            <section>
+                <Card/>
+            </section>
+        </>)
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<CardList/>);
+</script>
+
+</body>
+</html>

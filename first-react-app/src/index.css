@@ -1,0 +1,41 @@
+.bookcard {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.usercard {
+    width: 260px;
+    height: 250px;
+    border: 1px solid black;
+    padding: 15px;
+}
+
+.everything {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.everything img {
+    width: 60px;
+    height: 60px;
+    border-radius: 99px;
+}
+
+.card {
+    margin-top: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+.bookcards {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
