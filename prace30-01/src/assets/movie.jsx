@@ -4,7 +4,7 @@ import {useState} from "react";
 
 export function Movie(props) {
     const movie = props.movie;
-    /*
+
     const stars = [];
     const [starStatus, newStarStatus] = useState("👎");
 
@@ -21,10 +21,12 @@ export function Movie(props) {
             <button onClick={changeStar} className={"star"}>{starStatus}</button>
         )
     }
-     */
 
+/*
     const [likeCount, newLikeCount] = useState(0)
     const [dislikeCount, newDislikeCount] = useState(0)
+
+
 
     function ChangeLikeCount() {
         newLikeCount(likeCount + 1)
@@ -34,6 +36,8 @@ export function Movie(props) {
         newDislikeCount(dislikeCount + 1)
     }
 
+
+ */
     return (
         <div className={"movie"}>
             <img src={movie.img} alt={"img"}/>
@@ -43,9 +47,7 @@ export function Movie(props) {
                 <span>{movie.author}</span>
             </div>
             <div className={"stars"}>
-                <button onClick={ChangeLikeCount} className={"likecount"}> Likes: {likeCount} 👍</button>
-                <button onClick={ChangeDislikeCount} className={"likecount"}> Dislikes: {dislikeCount} 👎</button>
-            </div>
+                {stars}            </div>
         </div>
     )
 }
