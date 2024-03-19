@@ -1,0 +1,32 @@
+.main {
+  margin: 0;
+  font-family: Arial, serif;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+.items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+
+.country {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.country img {
+  width: 50px;
+  vertical-align: center;
+}
