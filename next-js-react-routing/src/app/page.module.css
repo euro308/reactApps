@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem;
+}
+
+.title {
+  color: red;
+  font-size: 100px;
+}
+
+.description {
+  font-size: 20px;
+}
+
+.main a {
+  font-size: 25px;
+  color: lightgray;
+}
+
+.main a:hover {
+  color: lightblue;
+}
+
