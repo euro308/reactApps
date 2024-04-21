@@ -4,13 +4,14 @@ import Link from "next/link";
 export default async function Home({params}) {
 
     const response =  await fetch(`https://restcountries.com/v3.1/name/${params.id}`);
-    const data =  await response.json();
+    const information =  await response.json();
+    let data = information[0]
 
-    const name = data[0].name.common
-    const officialName = data[0].name.official
-    const flagDesc = data[0].flags.alt
-    const area = data[0].area
-    const population = data[0].population
+    const name = data.name.common
+    const officialName = data.name.official
+    const flagDesc = data.flags.alt
+    const area = data.area
+    const population = data.population
 
 
     return (
