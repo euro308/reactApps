@@ -39,7 +39,7 @@ export default function Home() {
             {/* Welcome Banner */}
             <div className={"flex justify-between items-center w-screen p-10 pt-0"}>
                 <h1 className={"text-6xl font-bold"}>WELCOME</h1>
-                <span className={"w-2/6 text-xs text-right"}>Hello and a heartfelt welcome, I'm Nolan Mitchell, your trusted real estate guide in the vibrant city of Melbourne. Whether you're a seasoned investor, a first-time homebuyer, or simply looking for your dream property, I'm here to make your real estate journey seamless and successful.</span>
+                <span className={"w-2/6 text-xs text-right"}>Hello and a heartfelt welcome, I&apos;m Nolan Mitchell, your trusted real estate guide in the vibrant city of Melbourne. Whether you&apos;re a seasoned investor, a first-time homebuyer, or simply looking for your dream property, I&apos;m here to make your real estate journey seamless and successful.</span>
             </div>
 
             {/* Featured Products */}
@@ -106,8 +106,8 @@ export default function Home() {
                         className={"font-mono italic font-light"}>way</span>
                         <br/> TO <br/> BEAUTIFUL MELBOURNE
                     </span>
-                    <span className={"pt-20 text-xs"}>With years of experience under my belt, I'm passionate about helping people like you find their perfect slice of Melbourne real estate heaven. Whether you're searching for your dream home, an investment property, or looking to sell, I'm here to guide you through every step of the process with expertise and enthusiasm.</span>
-                    <span  className={"pt-20 text-xs font-bold hover:text-gray-500"}>(Find out more about me)</span>
+                    <span className={"pt-20 text-xs"}>With years of experience under my belt, I&apos;m passionate about helping people like you find their perfect slice of Melbourne real estate heaven. Whether you&apos;re searching for your dream home, an investment property, or looking to sell, I&apos;m here to guide you through every step of the process with expertise and enthusiasm.</span>
+                    <span className={"pt-20 text-xs font-bold hover:text-gray-500"}>(Find out more about me)</span>
                 </div>
             </div>
 
