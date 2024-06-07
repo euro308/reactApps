@@ -1,14 +1,35 @@
 "use client"
-import {SiteHeader} from "@/app/components/siteHeader";
+import { SiteHeader } from "@/app/components/siteHeader";
 import Link from "next/link";
-import {SiteFooter} from "@/app/components/siteFooter";
+import { SiteFooter } from "@/app/components/siteFooter";
+import { useEffect } from "react";
 
-let fontSize = 15;
-let bold = false;
-let italic = false;
-let underline = false;
-let align = "left";
+let searchParams = window.location.href;
+let articleNumber = searchParams.substring(searchParams.length - 1);
 
+let articleName = localStorage.getItem(`name[${articleNumber}]`)
+let content = localStorage.getItem(`content[${articleNumber}]`);
+let fontSize = localStorage.getItem(`fontSize[${articleNumber}]`);
+let bold = localStorage.getItem(`bold[${articleNumber}]`)
+let italic = localStorage.getItem(`italic[${articleNumber}]`);
+let underline = localStorage.getItem(`underline[${articleNumber}]`);
+let align = localStorage.getItem(`articleAlign[${articleNumber}]`);
+
+function colorTheRightButtons() {
+    let buttons = document.querySelectorAll("button");
+
+    buttons.forEach((button) => {
+        if (button.innerHTML === "Bold Text" && bold) {
+            button.style.backgroundColor = 'rgb(241, 241, 241)';
+        } else if (button.innerHTML === "Italic Text" && italic) {
+            button.style.backgroundColor = 'rgb(241, 241, 241)';
+        } else if (button.innerHTML === "Underlined Text" && underline) {
+            button.style.backgroundColor = 'rgb(241, 241, 241)';
+        } else if (button.innerHTML.toLowerCase() === `align ${align}`) {
+            button.style.backgroundColor = 'rgb(241, 241, 241)';
+        }
+    });
+}
 
 function handleTextSize(event) {
     let articleText = document.getElementById("articleText");
@@ -75,16 +96,6 @@ function handleAligns(event) {
     align = button.dataset.align;
 }
 
-let number = localStorage.getItem("number");
-if (number === null) {
-    number = 0;
-}
-
-if (localStorage.getItem(`name[${number}]`)) {
-    number++
-}
-
-
 function saveArticle() {
     let articleName = document.getElementById("articleName").value;
     let articleText = document.getElementById("articleText").value;
@@ -92,22 +103,25 @@ function saveArticle() {
     if (articleName.length > 0 && articleText.length > 0) {
         alert("Saved!");
 
-        localStorage.setItem(`name[${number}]`, articleName);
-        localStorage.setItem(`content[${number}]`, articleText);
-        localStorage.setItem(`fontSize[${number}]`, fontSize);
-        localStorage.setItem(`bold[${number}]`, bold);
-        localStorage.setItem(`italic[${number}]`, italic);
-        localStorage.setItem(`underline[${number}]`, underline);
-        localStorage.setItem(`articleAlign[${number}]`, align);
+        localStorage.setItem(`name[${articleNumber}]`, articleName);
+        localStorage.setItem(`content[${articleNumber}]`, articleText);
+        localStorage.setItem(`fontSize[${articleNumber}]`, fontSize);
+        localStorage.setItem(`bold[${articleNumber}]`, bold);
+        localStorage.setItem(`italic[${articleNumber}]`, italic);
+        localStorage.setItem(`underline[${articleNumber}]`, underline);
+        localStorage.setItem(`articleAlign[${articleNumber}]`, align);
 
-        number++;
-        localStorage.setItem("number", number);
     } else {
         alert("Either the Article's Name or Text is blank!");
     }
 }
 
 export default function Home() {
+
+    useEffect(() => {
+        colorTheRightButtons();
+    }, []);
+
     return (
         <main className={"w-[100%] flex flex-col justify-center items-center"}>
             <SiteHeader/>
@@ -116,7 +130,9 @@ export default function Home() {
             <div className={"min-w-[70%] h-[120px] flex flex-col justify-center"}>
                 <h2 className={"font-bold text-2xl"}>Name of the Article</h2>
                 <input id={"articleName"} type={"text"} placeholder={"Article Header"}
-                       className={"min-w-full h-[50px] rounded border-2 pl-2 font-bold text-xl"} required={true}/>
+                       className={"min-w-full h-[50px] rounded border-2 pl-2 font-bold text-xl"} required={true}>
+
+                </input>
             </div>
 
             {/* Article Text */}
@@ -132,29 +148,29 @@ export default function Home() {
                                    onChange={handleTextSize}/>
                         </div>
 
-                        <button id={"bold"} className={"font-bold rounded p-2"} onClick={handleClick}>Bold Text
+                        <button id={"bold"} className={"font-bold rounded p-2"} onClick={handleClick} onLoad={colorTheRightButtons}>Bold Text
                         </button>
-                        <button id={"italic"} className={"italic rounded p-2"} onClick={handleClick}>Italic Text
+                        <button id={"italic"} className={"italic rounded p-2"} onClick={handleClick} onLoad={colorTheRightButtons}>Italic Text
                         </button>
                         <button id={"underline"} className={"underline rounded p-2"}
-                                onClick={handleClick}>Underlined
+                                onClick={handleClick} onLoad={colorTheRightButtons}>Underlined
                             Text
                         </button>
 
                         <button id={"align"} className={"rounded p-2 bg-[#f1f1f1]"} data-align="left"
-                                onClick={handleAligns}>Align
+                                onClick={handleAligns} onLoad={colorTheRightButtons}>Align
                             Left
                         </button>
                         <button id={"align"} className={"rounded p-2"} data-align="center"
-                                onClick={handleAligns}>Align
+                                onClick={handleAligns} onLoad={colorTheRightButtons}>Align
                             Center
                         </button>
                         <button id={"align"} className={"rounded p-2"} data-align="right"
-                                onClick={handleAligns}>Align
+                                onClick={handleAligns} onLoad={colorTheRightButtons}>Align
                             Right
                         </button>
                         <button id={"align"} className={"rounded p-2"} data-align="justify"
-                                onClick={handleAligns}>Justify
+                                onClick={handleAligns} onLoad={colorTheRightButtons}>Justify
                         </button>
                     </div>
 
