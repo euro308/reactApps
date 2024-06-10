@@ -126,6 +126,9 @@ function saveArticle() {
 }
 
 export default function Home() {
+    const ISSERVER = typeof window === "undefined";
+    if (!ISSERVER) localStorage.setItem("Client", "true");
+
     let [articleName, setArticleName] = useState(name)
     let [content, setContent] = useState(articleContent)
 
