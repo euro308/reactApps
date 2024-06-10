@@ -1,19 +1,28 @@
 "use client"
-import { SiteHeader } from "@/app/components/siteHeader";
+import {SiteHeader} from "@/app/components/siteHeader";
 import Link from "next/link";
-import { SiteFooter } from "@/app/components/siteFooter";
-import { useEffect } from "react";
+import {SiteFooter} from "@/app/components/siteFooter";
+import {useEffect, useState} from "react";
 
 let searchParams = window.location.href;
 let articleNumber = searchParams.substring(searchParams.length - 1);
 
-let articleName = localStorage.getItem(`name[${articleNumber}]`)
-let content = localStorage.getItem(`content[${articleNumber}]`);
+let name = localStorage.getItem(`name[${articleNumber}]`);
+let articleContent = localStorage.getItem(`content[${articleNumber}]`);
 let fontSize = localStorage.getItem(`fontSize[${articleNumber}]`);
 let bold = localStorage.getItem(`bold[${articleNumber}]`)
 let italic = localStorage.getItem(`italic[${articleNumber}]`);
 let underline = localStorage.getItem(`underline[${articleNumber}]`);
 let align = localStorage.getItem(`articleAlign[${articleNumber}]`);
+
+function setTheRightAttributes() {
+    let articleText = document.getElementById("articleText");
+    articleText.style.fontSize = fontSize + "px"
+    articleText.style.fontWeight = bold ? "bold" : "normal"
+    articleText.style.fontStyle = italic ? "italic" : "normal"
+    articleText.style.textDecoration = underline ? "underline" : "none"
+    articleText.style.textAlign = align
+}
 
 function colorTheRightButtons() {
     let buttons = document.querySelectorAll("button");
@@ -117,8 +126,11 @@ function saveArticle() {
 }
 
 export default function Home() {
+    let [articleName, setArticleName] = useState(name)
+    let [content, setContent] = useState(articleContent)
 
     useEffect(() => {
+        setTheRightAttributes();
         colorTheRightButtons();
     }, []);
 
@@ -130,7 +142,8 @@ export default function Home() {
             <div className={"min-w-[70%] h-[120px] flex flex-col justify-center"}>
                 <h2 className={"font-bold text-2xl"}>Name of the Article</h2>
                 <input id={"articleName"} type={"text"} placeholder={"Article Header"}
-                       className={"min-w-full h-[50px] rounded border-2 pl-2 font-bold text-xl"} required={true}>
+                       className={"min-w-full h-[50px] rounded border-2 pl-2 font-bold text-xl"} required={true}
+                       value={articleName} onChange={(e) => setArticleName(e.target.value)}>
 
                 </input>
             </div>
@@ -144,13 +157,15 @@ export default function Home() {
                          className={"flex justify-around items-center h-12 border-b-2 border-gray"}>
                         <div className={"w-[20%] flex justify-around p-2"}>
                             <span className={""}>Font Size:</span>
-                            <input className={"text-center w-[20%]"} type={"number"} placeholder={"15"}
+                            <input className={"text-center w-[25%]"} type={"number"} placeholder={fontSize}
                                    onChange={handleTextSize}/>
                         </div>
 
-                        <button id={"bold"} className={"font-bold rounded p-2"} onClick={handleClick} onLoad={colorTheRightButtons}>Bold Text
+                        <button id={"bold"} className={"font-bold rounded p-2"} onClick={handleClick}
+                                onLoad={colorTheRightButtons}>Bold Text
                         </button>
-                        <button id={"italic"} className={"italic rounded p-2"} onClick={handleClick} onLoad={colorTheRightButtons}>Italic Text
+                        <button id={"italic"} className={"italic rounded p-2"} onClick={handleClick}
+                                onLoad={colorTheRightButtons}>Italic Text
                         </button>
                         <button id={"underline"} className={"underline rounded p-2"}
                                 onClick={handleClick} onLoad={colorTheRightButtons}>Underlined
@@ -176,7 +191,7 @@ export default function Home() {
 
                     <textarea id={"articleText"}
                               className={"w-full min-h-[87%] max-h-[87%] p-4 outline-0 text-[15px]"}
-                              required={true}></textarea>
+                              required={true} value={content} onChange={(e) => setContent(e.target.value)}></textarea>
                 </div>
             </div>
 
@@ -188,7 +203,6 @@ export default function Home() {
                 <button className={"text-xl border-none bg-black text-white p-4 rounded"}><Link
                     href={"/"}>Go Back</Link></button>
             </div>
-
             <SiteFooter/>
         </main>
     );

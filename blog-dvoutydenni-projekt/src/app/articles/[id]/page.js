@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { SiteHeader } from "@/app/components/siteHeader";
+import {useEffect, useState} from 'react';
+import {SiteHeader} from "@/app/components/siteHeader";
 import Link from "next/link";
 import {SiteFooter} from "@/app/components/siteFooter";
 
@@ -46,7 +46,8 @@ export default function Home() {
                 <h1 className={"font-bold text-6xl"}>{name}</h1>
             </div>
 
-            <div className={"flex flex-col w-[70%] h-[400px] border-2 overflow-y-scroll whitespace-pre-wrap"} style={{textAlign: articleAlign}}>
+            <div className={"flex flex-col w-[70%] h-[400px] border-2 overflow-y-scroll whitespace-pre-wrap"}
+                 style={{textAlign: articleAlign}}>
                 <span
                     className={`w-full min-h-[87%] max-h-[87%] p-4 outline-0`}
                     style={{
@@ -58,7 +59,8 @@ export default function Home() {
                     {content}
                 </span>
             </div>
-            <button className={"text-xl border-none bg-black text-white p-4 rounded"}><Link href={"/"}>Go Back</Link></button>
+            <button className={"text-xl border-none bg-black text-white p-4 rounded"}><Link href={"/"}>Go Back</Link>
+            </button>
             <SiteFooter/>
         </main>
     );
