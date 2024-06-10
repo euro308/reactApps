@@ -1,3 +1,4 @@
+"use client"
 import {SiteHeader} from "@/app/components/siteHeader";
 import {ArticleList} from "@/app/components/articleList";
 import {SiteFooter} from "@/app/components/siteFooter";
